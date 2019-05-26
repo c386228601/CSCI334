@@ -1,0 +1,81 @@
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">SEARCH</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-12 col-lg-6 col-md-12">
+                <form action="search.php" method="post" class="tm-edit-product-form">
+                  <div class="row">
+                        <div class="form-group mb-3 col-xs-12 col-sm-9">
+                          <input
+                            id="stock"
+                            name="search"
+                            type="text"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+						<div class="form-group mb-3 col-xs-12 col-sm-3">
+                            <button type="submit" class="btn btn-primary btn-block text-uppercase mb-4">SEARCH</button>
+                        </div>
+                  </div> 
+				  <div>
+                     <label  style="color:white"><input name="table" type="checkbox" value="customer"/>customer </label> 
+                     <label style="color:white"><input name="table" type="checkbox" value="product" />product </label> 
+                     <label style="color:white"><input name="table" type="checkbox" value="olist" />order </label> 
+                      <label style="color:white"><input name="table" type="checkbox" value="delivery" />delivery </label> 		
+                </div>					  
+              </div>
+            </form>
+            </div>
+		<div class="tm-bg-primary-dark tm-block tm-block-products">
+            <div class="tm-product-table-container">
+			 <h2 class="tm-block-title">Search results</h2>
+              <table class="table table-hover tm-table-small tm-product-table">
+                <tbody>
+ <?php  
+				  $result = $conn->query($sql);
+                   if ($result->num_rows > 0) {
+    // list product
+    while($row = $result->fetch_assoc()) {
+	    if($table == "customer")
+		{
+		   	echo "<tr>
+               <td class='tm-product-name'>ID: " . $row["id"]. "</td>
+               <td>NAME: " . $row["name"]."</td>
+               <td>PHONE: ".$row["phone"]."</td>         
+              </tr>"; 
+		}
+		if($table == "product")
+		{
+		   echo "<tr>
+               <td class='tm-product-name'>SUPPLIER ID: " . $row["supid"]. "</td>
+               <td> PRODUCT NAME: " . $row["name"]."</td>
+               <td> PRICE: ".$row["price"]."</td>         
+              </tr>";  
+		}
+		if($table == "olist")
+		{
+		   echo "<tr>
+               <td class='tm-product-name'>ORDER ID: " . $row["id"]. "</td>
+               <td> DATE: " . $row["date"]."</td>
+               <td> PRICE: ".$row["price"]."</td>         
+              </tr>";  
+		}
+    }
+} else {
+    echo "Empty";
+}?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>

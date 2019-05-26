@@ -1,0 +1,196 @@
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Add Product</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <form action="postitemchange.php" method="post" class="tm-edit-product-form">
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Product Name
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      class="form-control validate"
+					  value = <?php echo"'$row[name]'"?>
+                      required
+                    />
+                  </div>
+				   <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Product Name
+                    </label>
+                    <input
+                      id="name"
+                      name="id"
+                      type="text"
+					  style ="display:none"
+                      class="form-control validate"
+					  value = <?php echo"'$id'"?>
+                      required
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="description"
+                      >Description</label
+                    >
+                    <textarea name ="description"
+                      class="form-control validate"
+                      rows="3"
+					  placeholder = <?php echo"'$row[description]'"?>
+                    ></textarea>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Type</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="type"
+                    >
+                      <option selected>Select Type</option>
+     <option value ="display" <?php if($row['type'] == 'display') echo "selected = selected"?>>display</option>
+     <option value ="static" <?php if($row['type'] == 'static') echo "selected = selected"?>>static</option>
+     <option value="working"<?php if($row['type'] == 'working') echo "selected = selected"?>>working</option>
+                    </select>
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Subject</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="subject"
+                    >
+                      <option selected>Select Subject</option>
+<option value ="trains" <?php if($row['subject'] == 'trains') echo "selected = selected"?>>trains</option>
+     <option value ="cars" <?php if($row['subject'] == 'cars') echo "selected = selected"?>>cars</option>
+     <option value="boats" <?php if($row['subject'] == 'boats') echo "selected = selected"?>>boats</option>
+     <option value="aircraft" <?php if($row['subject']== 'aircraft') echo "selected = selected"?>>aircraft</option>     
+	 <option value="other"<?php if($row['subject'] == 'other') echo "selected = selected"?>>other</option>
+                    </select>
+					
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Location</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="location"
+                    >
+                      <option selected>Select Location</option>
+                      <option <?php if($row['location'] == 'Location1') echo "selected = selected"?> value="Location1">Location1</option>
+                      <option <?php if($row['location'] == 'Location2') echo "selected = selected"?> value="Location2">Location2</option>
+                      <option <?php if($row['location'] == 'Location3') echo "selected = selected"?> value="Location3">Location3</option>
+                    </select>
+					
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Availiability</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="avaliability"
+                    >
+                      <option selected>Select Availiability</option>
+     <option value ="True" <?php if($row['avaliability'] == 'True') echo "selected = selected"?>>True</option>
+     <option value="False"<?php if($row['avaliability'] == 'False') echo "selected = selected"?>>False</option>
+                    </select>
+					
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Supplier ID</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="sid"
+                    >
+                      <option selected>Supplier ID</option>
+     <option value ="1"<?php if($row['supid'] == '1') echo "selected = selected"?>>1</option>
+     <option value="2"<?php if($row['supid'] == '2') echo "selected = selected"?>>2</option>
+     <option value="3"<?php if($row['supid'] == '3') echo "selected = selected"?>>3</option>
+                    </select>
+					
+                  </div>
+                  <div class="row">
+                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="stock"
+                            >Units In Stock
+                          </label>
+                          <input
+                            id="stock"
+                            name="stock"
+                            type="text"
+                            class="form-control validate"
+							value = <?php echo"'$row[stock]'"?>
+                            required
+                          />
+                        </div>
+						<div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="stock"
+                            >Price
+                          </label>
+                          <input
+                            id="price"
+                            name="price"
+                            type="text"
+                            class="form-control validate"
+							value = <?php echo"'$row[price]'"?>
+                            required
+                          />
+						   <input
+                            name="id"
+                            type="text"
+                            style="display:none"
+							value = <?php echo"'$row[id]'"?>
+                          />
+                        </div>
+                  </div>
+                  
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" type="file" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="UPLOAD PRODUCT IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

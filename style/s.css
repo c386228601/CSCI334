@@ -1,0 +1,71 @@
+.header{
+	width: 100%;
+	height:50px;
+	margin-left:10%;
+}
+.search{
+	width: 50%;
+	position:absolute;
+	float:left;
+	
+}
+
+.input
+{
+	width: 80%;
+}
+
+.username
+{
+	width: 30%;
+	float:right;
+}
+
+
+.conts
+{
+	visibility:hidden;
+}
+
+
+
+.nav table
+{ 
+    width:100%; 
+	height:50;
+	text-align:left;
+}
+
+.tab
+{
+	font-size:10pt;
+	font-weight:normal;
+	cursor:pointer;
+}
+.selTab
+{
+	font-weight:bold;
+
+}
+	
+.show
+{
+  margin-top:10%;
+  width:60%;
+}	
+
+.additem
+{
+
+}
+.additem input
+{
+	width:60%;
+	margin-top:30px;	
+}
+
+.additem select
+{
+	width:60%;
+	margin-top:30px;	
+}

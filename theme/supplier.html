@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+    <div class="container mt-5 col-12">
+      <div class="row tm-content-row">
+        <div class="col-12">
+          <div class="tm-bg-primary-dark tm-block tm-block-products">
+            <div class="tm-product-table-container">
+			<h2 class="tm-block-title">Supplier List</h2>
+              <table class="table table-hover tm-table-small tm-product-table">
+                <thead>
+                  <tr>
+                    <th scope="col">SUPPLIER ID</th>
+                    <th scope="col">NAME </th>
+					<th scope="col">ADDRESS</th>
+                    <th scope="col">CREDIT</th>
+                    <th scope="col">PHONE</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 		<?php 
+						    include'class.php';
+				            $sql = "SELECT * FROM supplier";
+                            $result = $conn->query($sql);
+				            while($row = $result->fetch_assoc()){
+					        $supplier = new supplier;
+					        $supplier -> set_for_show($row["id"],$row["address"],$row["credit"],$row["phone"],$row["name"]);
+					        $supplier -> print_supplier();
+					      }
+				         ?>
+                </tbody>
+              </table>
+            </div>
+            <!-- table container -->
+            <a href="#" class="btn btn-primary btn-block text-uppercase mb-3" onclick ="get_page('add-supplier')"> Add new Supplier</a>
+			<div class="tm-product-table-container">
+			<h2 class="tm-block-title">Delivery List</h2>
+              <table class="table table-hover tm-table-small tm-product-table">
+                <thead>
+                  <tr>
+				    <th scope="col">DELIVERY ID</th>
+                    <th scope="col">SUPPLIER ID</th>
+					<th scope="col">PRICE</th>
+                    <th scope="col">DATE </th>
+					<th scope="col">SHOP</th>
+					<th scope="col">DELIVERY MAN</th>
+                    <th scope="col">CONTACT PHONE</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+				       <?php 
+				            $sql = "SELECT * FROM delivery";
+                            $result = $conn->query($sql);
+				            while($row = $result->fetch_assoc()){
+					        $delivery = new delivery;
+					        $delivery -> set_for_show($row["id"],$row["supid"],$row["price"],$row["date"],$row["shop"],$row["name"],$row["phone"]);
+					        $delivery -> print_delivery();
+					      }
+				         ?>
+                </tbody>
+              </table>
+            </div>
+		   <a href="#" class="btn btn-primary btn-block text-uppercase mb-3" onclick ="get_page('add-delivery')"> Add new Delivery</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script>
+	   function change_status()
+		{				 
+			  document.getElementById("supplier").classList.add("active");
+			  document.getElementById("hom").classList.remove("active");
+			  document.getElementById("admin").classList.remove("active");
+			  document.getElementById("product").classList.remove("active");
+		 }
+	    window.onload = change_status;
+    </script>

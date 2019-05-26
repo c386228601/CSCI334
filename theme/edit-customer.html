@@ -1,0 +1,167 @@
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Add Customer</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <form action="postcustomerchange.php" method="post" class="tm-edit-product-form">
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Customer Name
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      class="form-control validate"
+					  value = <?php echo"'$row[name]'"?>
+                      required
+                    />
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Address
+                    </label>
+                    <input
+                      id="name"
+                      name="address"
+                      type="text"
+                      class="form-control validate"
+					  value = <?php echo"'$row[address]'"?>
+                      required
+                    />
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Phone
+                    </label>
+                    <input
+                      id="name"
+                      name="phone"
+                      type="text"
+                      class="form-control validate"
+					  value = <?php echo"'$row[phone]'"?>
+                      required
+                    />
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Member status</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="ms"
+                    >
+                      <option selected>Member status</option>
+                   <option value ="True" <?php if($row['status'] == 'True') echo "selected = selected"?>>True</option>
+                    <option value="False"<?php if($row['status'] == 'False') echo "selected = selected"?>>False</option>
+                    </select>
+					
+                  </div>
+				  	<div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Favorite Subject</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="subject"
+                    >
+                      <option selected>Subject</option>
+<option value ="trains" <?php if($row['subject'] == 'trains') echo "selected = selected"?>>trains</option>
+     <option value ="cars" <?php if($row['subject'] == 'cars') echo "selected = selected"?>>cars</option>
+     <option value="boats" <?php if($row['subject'] == 'boats') echo "selected = selected"?>>boats</option>
+     <option value="aircraft" <?php if($row['subject']== 'aircraft') echo "selected = selected"?>>aircraft</option>     
+	 <option value="other"<?php if($row['subject'] == 'other') echo "selected = selected"?>>other</option>
+                    </select>
+					
+                  </div>
+				  				  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Favorite Type</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="type"
+                    >
+                      <option selected>Type</option>
+     <option value ="display" <?php if($row['type'] == 'display') echo "selected = selected"?>>display</option>
+     <option value ="static" <?php if($row['type'] == 'static') echo "selected = selected"?>>static</option>
+     <option value="working"<?php if($row['type'] == 'working') echo "selected = selected"?>>working</option>
+                    </select>
+					
+                  </div>
+                  <div class="row">
+                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="stock"
+                            >Credit
+                          </label>
+                          <input
+                            id="stock"
+                            name="credit"
+                            type="text"
+                            class="form-control validate"
+							value = <?php echo"'$row[credit]'"?>
+                            required
+                          />
+                        </div>
+						<div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="stock"
+                            >Balance
+                          </label>
+                          <input
+                            id="price"
+                            name="balance"
+                            type="text"
+                            class="form-control validate"
+							value = <?php echo"'$row[balance]'"?>
+                            required
+                          />
+						   <input
+							style ="display:none"
+                            name="id"
+                            type="text"
+							value = <?php echo"'$row[id]'"?>
+                          />
+                        </div>
+                  </div>
+                  
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" type="file" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="UPLOAD PRODUCT IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Submit</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

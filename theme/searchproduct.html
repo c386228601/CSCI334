@@ -1,0 +1,73 @@
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Add Delivery</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-12 col-lg-6 col-md-12">
+                <form action="searchproduct.php" method="post" class="tm-edit-product-form">
+                  <div class="row">
+                        <div class="form-group mb-3 col-xs-12 col-sm-9">
+                          <input
+                            id="stock"
+                            name="search"
+                            type="text"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+						<div class="form-group mb-3 col-xs-12 col-sm-3">
+                            <button type="submit" class="btn btn-primary btn-block text-uppercase mb-4">SEARCH</button>
+                        </div>
+                  </div>          
+              </div>
+            </form>
+            </div>
+		<div class="tm-bg-primary-dark tm-block tm-block-products">
+            <div class="tm-product-table-container">
+			 <h2 class="tm-block-title">Product List</h2>
+              <table class="table table-hover tm-table-small tm-product-table">
+                <thead>
+                  <tr>
+                    <th scope="col">SUPPLIER.ID</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">PRICE</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+		          <?php  
+				  $result = $conn->query($sql);
+                   if ($result->num_rows > 0) {
+    // list product
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+               <td class='tm-product-name'>" . $row["supid"]. "</td>
+               <td>" . $row["name"]."</td>
+               <td>".$row["price"]."</td>
+            
+			   <td><button onclick='add_shoppingcar(this);'>+</button></td>
+		       <td>
+				 <form action ='edititem.php' method ='post'>
+					<input type='text' style='display:none' name ='id' value='".$row["id"]."'>  
+				  </form>
+               </td>
+              </tr>";
+    }
+} else {
+    echo "Empty";
+}?>
+                </tbody>
+              </table>
+            </div>
+            <!-- table container -->
+            <a href="#" class="btn btn-primary btn-block text-uppercase mb-3" onclick ="get_page('add-product')"> Add new product</a>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>

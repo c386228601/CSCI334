@@ -1,0 +1,140 @@
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Edit Admin</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <form action="postadminchange.php" method="post" class="tm-edit-product-form">
+                  <div class="form-group mb-3">
+                    <label
+                      for="username"
+                      >User Name
+                    </label>
+                    <input
+                      id="name"
+                      name="un"
+                      type="text"
+					  value = <?php echo"'$row[username]'"?>
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="password"
+                      >Password
+                    </label>
+                    <input
+                      id="name"
+                      name="pw"
+                      type="text"
+					  value = <?php echo"'$row[password]'"?>
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Phone
+                    </label>
+                    <input
+                      id="name"
+                      name="phone"
+                      type="text"
+                      class="form-control validate"
+					  value = <?php echo"'$row[phone]'"?>
+                      required
+                    />
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Phone
+                    </label>
+                    <input
+                      id="name"
+                      name="id"
+                      type="text"
+					  style="display：none"
+                      class="form-control validate"
+					  value = <?php echo"$id"?>
+                      required
+                    />
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Role</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="role"
+                    >
+                      <option selected>Role</option>
+                    <option value ="Admin" <?php if($row['role'] == 'Admin') echo "selected = selected"?>>Admin</option>
+                     <option value="Sales" <?php if($row['role'] == 'Sales') echo "selected = selected"?>>Sales</option>
+					 <option value="Warehouse" <?php if($row['role'] == 'Warehouse') echo "selected = selected"?>>Warehouse</option>
+                    </select>
+                  </div>
+				  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Shop</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="shop"
+                    >
+                    <option selected>Shop</option>
+                    <option value ="Shop1" <?php if($row['shop'] == 'Shop1') echo "selected = selected"?>>Shop1</option>
+                     <option value="Shop2"<?php if($row['shop'] == 'Shop2') echo "selected = selected"?>>Shop2</option>
+					 <option value="Shop3"<?php if($row['shop'] == 'Shop3') echo "selected = selected"?>>Shop3</option>
+                    </select>
+                  </div>
+				  	<div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Avaliability</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name ="avaliability"
+                    >
+                      <option selected>Avaliability</option>
+                    <option value ="True" <?php if($row['avaliability'] == 'True') echo "selected = selected"?>>True</option>
+                     <option value="False" <?php if($row['avaliability'] == 'False') echo "selected = selected"?>>False</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" type="file" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="UPLOAD PRODUCT IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Customer Now</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

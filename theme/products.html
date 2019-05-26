@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+    <div class="container mt-5 col-12">
+      <div class="row tm-content-row">
+        <div class="col-12">
+          <div class="tm-bg-primary-dark tm-block tm-block-products">
+            <div class="tm-product-table-container">
+			<h2 class="tm-block-title">Product List</h2>
+              <table class="table table-hover tm-table-small tm-product-table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NAME</th>
+					<th scope="col">DESCRIPTION</th>
+                    <th scope="col">PRICE</th>
+                    <th scope="col">STOCK</th>
+					<th scope="col">SUBJECT</th>
+                    <th scope="col">TYPE</th>
+                    <th scope="col">LOCATION</th>
+                    <th scope="col">DATE</th>
+					<th scope="col">AVALIABILITY</th>
+                    <th scope="col">ADD</th>
+					<th scope="col">OPTION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 		<?php 
+						    include'class.php';
+				            $sql = "SELECT * FROM product";
+                            $result = $conn->query($sql);
+				            while($row = $result->fetch_assoc()){
+					        $product = new product;
+					        $product -> set_for_show($row["id"],$row["date"],$row["type"],$row["price"],$row["subject"],$row["stock"],$row["supid"],$row["name"],$row["description"],$row["location"],$row["avaliability"]);
+					        $product -> print_product();
+					 }
+				         ?>
+                </tbody>
+              </table>
+            </div>
+            <!-- table container -->
+            <a href="#" class="btn btn-primary btn-block text-uppercase mb-3" onclick ="get_page('add-product')"> Add new product</a>
+          </div>
+        </div>
+      </div>
+	   <div class="row tm-content-row">
+        <div class="col-12">
+          <div class="tm-bg-primary-dark tm-block tm-block-products">
+            <div class="tm-product-table-container">
+			<h2 class="tm-block-title">Shopping Cart</h2>
+             <div class = "table table-hover tm-table-small tm-product-table Cart">
+	          <form action ="placeorder.php" method="post">
+	           <table>
+		        <thead>
+			     <tr>
+				 <th>PRODUCT ID</th>
+				 <th>Name</th>
+				 <th>DESCRIPTION</th>
+				 <th>SUBJECT</th>
+				 <th>TYPE</th>
+				 <th>PRICE</th>
+				 <th>Remove</th>
+			    </tr>
+		      </thead>
+		      <tbody id="shopping_car"></tbody>
+		      <tfoot>
+		       <tr>
+   		        <th colspan="5"><hr/></th></th>
+		       </tr>
+			   <tr>
+				<th>Total</th>
+				<form action ="placeorder.php" method="post">
+				<th><input  name ="total" id="total" type ="text"/></th>
+				<th><input type ="text" name ="cid" placeholder="Input Customer ID"/></th>
+				<th><input type ="text" name = "discount" placeholder="Input Discount"/></th>
+			 	<th><input type ="submit" value="Place order"/></th>
+			   </tr>
+		      </tfoot>
+	         </table>
+	         </form>
+           </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script>
+	   function change_status()
+		{				 
+			  document.getElementById("product").classList.add("active");
+			  document.getElementById("hom").classList.remove("active");
+			  document.getElementById("admin").classList.remove("active");
+			  document.getElementById("supplier").classList.remove("active");
+		 }
+	    window.onload = change_status;
+    </script>

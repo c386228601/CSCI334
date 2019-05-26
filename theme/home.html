@@ -1,0 +1,66 @@
+                <div class=" mt-5 col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
+                        <h2 class="tm-block-title">Customer List</h2>
+                        <div class="tm-notification-items">				
+						  <?php 
+						    include'class.php';
+				            $sql = "SELECT * FROM customer";
+                            $result = $conn->query($sql);
+				            while($row = $result->fetch_assoc()){
+					        $customer = new customer;
+					        $customer -> set_for_show($row["id"],$row["date"],$row["address"],$row["status"],$row["name"],$row["phone"],$row["credit"],$row["balance"]);
+					        $customer -> print_customer();
+					 }
+				         ?>
+                        </div>
+                    </div>
+				 <a href="#" class="btn btn-primary btn-block text-uppercase mb-3" onclick ="get_page('add-customer')">Add CUSTOMER</a>	
+                </div>
+
+                <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                        <h2 class="tm-block-title">Orders List</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ORDER NO.</th>
+                                    <th scope="col">CUSTOMER ID</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col">DISCOUNT</th>
+                                    <th scope="col">DATE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+					      <?php 
+				            $sql = "SELECT * FROM olist";
+                            $result = $conn->query($sql);
+				            while($row = $result->fetch_assoc()){
+					        $order = new order;
+					        $order -> set_for_show($row["id"],$row["date"],$row["cid"],$row["price"],$row["discount"]);
+					        $order -> print_order();
+					 }
+				         ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+	<script src="../style/js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="../style/js/moment.min.js"></script>
+    <!-- https://momentjs.com/ -->
+    <script src="../style/js/Chart.min.js"></script>
+    <!-- http://www.chartjs.org/docs/latest/ -->
+    <script src="../style/js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script src="../style/js/tooplate-scripts.js"></script>
+    <script>
+	  function change_status()
+		 {			
+			  document.getElementById("hom").classList.add("active");
+			  document.getElementById("product").classList.remove("active");
+			  document.getElementById("admin").classList.remove("active");
+			  document.getElementById("supplier").classList.remove("active");
+		 }
+		 window.onload = change_status;
+	</script>

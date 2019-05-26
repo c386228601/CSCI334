@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="style/css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="style/css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="style/css/templatemo-style.css">
+    
+</head>
+<body id="reportsPage">
+    <div class="" id="home">
+        <nav class="navbar navbar-expand-xl">
+            <div class="container h-100">
+                <a class="navbar-brand" href="index.html">
+                    <h1 class="tm-site-title mb-0">
+					  <?php if(!empty($_SESSION['user']['role']))echo $_SESSION['user']['shop']?>
+					</h1>
+                </a>
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars tm-nav-icon"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto h-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id ="hom" onclick ="get_page('home');">
+                                <i class="fa fa-users"></i>
+                                    Customer
+                                <span class="sr-only"></span>
+                            </a>
+                        </li>
+
+						<li class="nav-item">
+                            <a class="nav-link" href="#" id="product" onclick ="get_page('product');">
+                                <i class="fa fa-shopping-bag"></i>
+                                Product
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="admin" onclick ="get_page('admin');">
+                                <i class="far fa-user"></i>
+                                Admin
+                            </a>
+                        </li>
+						<li class="nav-item">
+                            <a class="nav-link" href="#" id="supplier" onclick ="get_page('supplier');">
+                                <i class="fa fa-truck"></i>
+                                Supplier
+                            </a>
+                        </li>
+						<li class="nav-item">
+                            <a class="nav-link" href="#" id="supplier" onclick ="get_page('search');">
+                                <i class="fa fa-search"></i>
+                                Search
+                            </a>
+                        </li>
+                    </ul>
+					
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link d-block" href="logout.php" onclick ="get_page('login');">
+                                <?php if(!empty($_SESSION['user']['role']))echo $_SESSION['user']['role']." ". $_SESSION['user']['un'].", <b>Logout</b>"?>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+        <div class="container">
+            <?php 
+			    include 'define.php';
+			?>
+        </div>
+
+        </div>
+		<script>
+function get_page(page)
+{ 
+   window.location.href='switch.php?page=' + page;	
+}
+		 
+function add_shoppingcar(button) {
+	var th_row = button.parentElement.parentElement;
+	var id = th_row.firstElementChild;
+	var name = id.nextElementSibling;
+	var des = name.nextElementSibling;
+	var price = des.nextElementSibling;
+	var stock = price.nextElementSibling;
+	var subject = stock.nextElementSibling;
+	var type = subject.nextElementSibling;
+	var tr = document.createElement("tr");
+	var shopping_car = document.getElementById("shopping_car");
+	tr.innerHTML="<th>"+id.innerHTML+"</th>"+
+	            "<th>"+name.innerHTML+"</th>"+
+				"<th>"+des.innerHTML+"</th>"+
+				"<th>"+subject.innerHTML+"</th>"+
+				"<th>"+type.innerHTML+"</th>"+
+				"<th>"+price.innerHTML+"</th>"+
+				"<th>"+
+					"<input type='button' value='X' onclick='remove(this);'/>"+
+				"</th>";
+	shopping_car.append(tr);
+	total();
+}
+ 
+function remove(obj) {
+	var tr = obj.parentNode.parentNode;
+	var tbody = tr.parentNode;
+	tbody.removeChild(tr);
+	total();
+}
+ 
+function countNumjia(obj) {
+	var num = document.getElementById("num").value;
+	var price = obj.parentNode.previousSibling;
+	var money = obj.parentNode.nextSibling;
+	num++;
+	document.getElementById("num").value = num;
+	money.innerHTML = price.innerHTML*num;
+	total();
+}
+ 
+function countNumjian(obj) {
+	var num = document.getElementById("num").value;
+	var price = obj.parentNode.previousSibling;
+	var money = obj.parentNode.nextSibling;
+	if(num>0){
+		num--;
+		document.getElementById("num").value = num;
+		money.innerHTML = price.innerHTML*num;
+	}else{
+		document.getElementById("num").value = 0;
+		money.innerHTML = price.innerHTML*num;
+	}
+	total();
+}
+ 
+function total() {
+	var tbody = document.getElementById("shopping_car");
+	var trs = tbody.getElementsByTagName("tr");
+	var sum = 0;
+	for(var i=0;i<trs.length;i++){
+		var ths = trs[i].getElementsByTagName("th");
+		var a = ths[5].innerHTML;
+		sum += parseFloat(a);
+	}
+	document.getElementById("total").value = sum;
+}
+
+
+
+        </script>
+</body>
+</html>
